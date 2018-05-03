@@ -25,7 +25,26 @@ namespace MisOfertasApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.custom.css",
+                      "~/Content/smoke.css",
                       "~/Content/site.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/smoke.min.js",
+                      "~/Scripts/lang/es.js",
+                      "~/Scripts/jquery.Rut.js",
+                      "~/Scripts/angular.js",
+                      "~/Scripts/spin.min.js",
+                      "~/Scripts/angular-spinner.min.js",
+                      "~/Scripts/angular-loading-spinner.js",
+                      "~/AppMisOfertaNg/app/app.js",
+                      "~/AppMisOfertaNg/app/controller/RegistroController.js",
+                      "~/AppMisOfertaNg/app/controller/LoginController.js",
+                      "~/Scripts/global.js"
+                      ));
+
+
         }
     }
 }
