@@ -1,0 +1,14 @@
+﻿@model MisOfertasApp.Models.MyViewModel
+
+@{
+    Layout = null;
+}
+
+
+
+    <div>
+        @Html.HiddenFor(x => x.Name)
+        @Html.LabelFor(x => x.IsChecked, Model.Name)
+        @Html.CheckBoxFor(x => x.IsChecked , new { @class= "form-check-input" })
+    </div>
+

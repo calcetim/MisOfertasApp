@@ -22,12 +22,12 @@ namespace MisOfertasAppCore.data.model
             Map(x => x.PRIMER_NOMBRE).Not.Nullable().Column("PRIMER_NOMBRE");
             Map(x => x.SEGUNDO_NOMBRE).Column("SEGUNDO_NOMBRE");
             Map(x => x.APELLIDO_PATERNO).Not.Nullable().Column("APELLIDO_PATERNO");
-            Map(x => x.APELLIDO_MATERNO).Not.Nullable().Column("APELLIDO_MATERNO");
-            References(x => x.Comuna).Column("COMUNA_ID");
-            Map(x => x.DIRECCION).Not.Nullable().Column("DIRECCION");
-            Map(x => x.TELEFONO).Not.Nullable().Column("TELEFONO");
-            Map(x => x.IS_ACTIVE).Not.Nullable().Column("IS_ACTIVE");
+            Map(x => x.APELLIDO_MATERNO).Column("APELLIDO_MATERNO");
+            Map(x => x.DIRECCION).Column("DIRECCION");
+            Map(x => x.TELEFONO).Column("TELEFONO");
+            Map(x => x.IS_ACTIVE).Column("IS_ACTIVE").Default("1"); ;
             Map(x => x.EMAIL).Column("EMAIL");
+            References(x => x.Comuna).Column("COMUNA_ID");
 
         }
 

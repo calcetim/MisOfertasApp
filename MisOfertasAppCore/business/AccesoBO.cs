@@ -53,10 +53,13 @@ namespace MisOfertasAppCore.data.business
                         string hashedPasswordAndSalt = seguridad.CrearPasswdHashConSal(password, salt);
                         passwordMatch                = hashedPasswordAndSalt.Equals(sec_usuario.PASSW);
 
+
+                        var segundoApellido = sec_usuario.Persona.APELLIDO_MATERNO == null ? "" : sec_usuario.Persona.APELLIDO_MATERNO.Substring(0, 1);
+
                         usuarioSesion.id               = sec_usuario.ID_USUARIO;
-                        usuarioSesion.nombre           = sec_usuario.Persona.PRIMER_NOMBRE +" "+ sec_usuario.Persona.APELLIDO_PATERNO +" " + sec_usuario.Persona.APELLIDO_MATERNO.Substring(0,1)+".";
-                        usuarioSesion.tienda           = sec_usuario.Tienda.NOMBRE;
-                        usuarioSesion.email            = sec_usuario.Persona.EMAIL;
+                        usuarioSesion.nombre           = sec_usuario.Persona.PRIMER_NOMBRE  +" "+ sec_usuario.Persona.APELLIDO_PATERNO + " " + segundoApellido;
+                        usuarioSesion.tienda           = sec_usuario.Tienda == null ? "" : sec_usuario.Tienda.NOMBRE;
+                        usuarioSesion.email            = sec_usuario.Persona.EMAIL == null ? "" : sec_usuario.Persona.EMAIL;
                         usuarioSesion.fechaSesion      = DateTime.Now;
                         usuarioSesion.accesoValido     = passwordMatch;
                         usuarioSesion.ip               = ip;

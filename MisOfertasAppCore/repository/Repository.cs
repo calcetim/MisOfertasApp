@@ -10,6 +10,8 @@ using NHibernate.Criterion;
 using NHibernate.Tool.hbm2ddl;
 using MisOfertasAppCore.data;
 using MisOfertasAppCore.data.Interface;
+using System.Threading.Tasks;
+using NHibernate.Linq;
 
 namespace MisOfertasAppCore.data.repository
 {
@@ -49,7 +51,8 @@ namespace MisOfertasAppCore.data.repository
 
         public void Dispose()
         {
-            session.Dispose();
+            
+                session.Dispose();
         }
 
 
@@ -255,5 +258,22 @@ namespace MisOfertasAppCore.data.repository
                 (typeof(T)).AddOrder(cr1).List<T>();
             return objsResult;
         }
+
+        public async Task<T> LoadAsync<T>(object id)
+        {
+            return await session.LoadAsync<T>(id);
+        }
+
+        public async Task<IList<T>> GetAllAsync<T>()
+        {
+            return await session.Query<T>().ToListAsync();
+
+        }
+
+        public async Task<T> GetReferenceAsync<T>(object id)
+        {
+            return await session.GetAsync<T>(id);
+        }
+
     }
 }

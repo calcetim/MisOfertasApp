@@ -8,7 +8,7 @@ using MisOfertasAppCore.data.model;
 
 namespace MisOfertasAppCore.data.model
 {
-    public class Persona
+    public class Persona : IPersona
     {
         public Persona() { }
         public virtual long ID_PERSONA { get; set; }

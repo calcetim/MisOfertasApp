@@ -13,8 +13,6 @@ namespace MisOfertasAppCore.data.model
         {
             Table("RUBRO");
             LazyLoad();
-            Cache.ReadOnly().IncludeAll();
-            Cache.Region("Duracion5H");
             Id(x => x.ID_RUBRO).GeneratedBy.Identity().Column("ID_RUBRO").GeneratedBy.Sequence("SEQ_RUBRO_ID"); ;
             Map(x => x.NOMBRE_RUBRO).Not.Nullable().Column("NOMBRE_RUBRO");
 
