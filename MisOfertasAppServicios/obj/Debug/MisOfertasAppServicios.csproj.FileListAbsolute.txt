@@ -1,5 +1,6 @@
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicios\bin\Debug\MisOfertasAppServicios.dll
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicios\bin\Debug\MisOfertasAppServicios.pdb
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicios\obj\Debug\MisOfertasAppServicios.csprojResolveAssemblyReference.cache
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicios\obj\Debug\MisOfertasAppServicios.csproj.CoreCompileInputs.cache
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicios\obj\Debug\MisOfertasAppServicios.dll
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicios\obj\Debug\MisOfertasAppServicios.pdb

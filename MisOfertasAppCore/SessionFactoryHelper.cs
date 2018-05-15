@@ -43,6 +43,12 @@ namespace MisOfertasAppCore
                 .Mappings(m => m.FluentMappings.Add<PersonaMap>())
                 .Mappings(m => m.FluentMappings.Add<TipoUsuarioMap>())
                 .Mappings(m => m.FluentMappings.Add<UsuarioMap>())
+                .Mappings(m => m.FluentMappings.Add<OfertaMap>())
+                .Mappings(m => m.FluentMappings.Add<ProductoMap>())
+                .Mappings(m => m.FluentMappings.Add<PreferenciaTiendaUsuarioMap>())
+                .Mappings(m => m.FluentMappings.Add<PreferenciaRubroUsuarioMap>())
+                .Mappings(m => m.FluentMappings.Add<WsVentasRealizadasMap>())
+
 
                 //.Mappings(m =>m.FluentMappings.ExportTo("C:\\MappingsSAJ"))                
                 .BuildConfiguration();
