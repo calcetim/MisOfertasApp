@@ -29,7 +29,6 @@ namespace MisOfertasApp
                       "~/Content/smoke.css",
                       "~/Content/site.css"));
 
-
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/smoke.min.js",
                       "~/Scripts/lang/es.js",
@@ -41,6 +40,7 @@ namespace MisOfertasApp
                       "~/AppMisOfertaNg/app/app.js",
                       "~/AppMisOfertaNg/app/controller/RegistroController.js",
                       "~/AppMisOfertaNg/app/controller/LoginController.js",
+                      "~/AppMisOfertaNg/app/controller/PublicarController.js",
                       "~/Scripts/global.js"
                       ));
 

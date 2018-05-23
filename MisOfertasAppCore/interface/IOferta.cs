@@ -19,6 +19,7 @@ namespace MisOfertasAppCore.data.Interface
         string DOS_POR_UNO { get; set; }
         string IS_ACTIVE { get; set; }
         string IMAGEN_ID { get; set; }
+        /*IList<Producto> Productos { get; set; }*/
 
     }
 }

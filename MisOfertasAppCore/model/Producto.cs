@@ -9,6 +9,7 @@ using MisOfertasAppCore.data.security;
 
 namespace MisOfertasAppCore.data.model
 {
+    
     public class Producto : IProducto
     {
         public Producto()

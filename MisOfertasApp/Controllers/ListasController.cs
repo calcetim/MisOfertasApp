@@ -62,6 +62,48 @@ namespace MisOfertasApp.Controllers
 
         }
 
+        public class SelectOption
+        {
+            public long ID_PRODUCTO { get; set; }
+
+            public String NOMBRE_PRODUCTO { get; set; }
+
+            public SelectOption()
+            {
+            }
+
+            public SelectOption(String NOMBRE_PRODUCTO, long ID_PRODUCTO)
+            {
+                this.NOMBRE_PRODUCTO = NOMBRE_PRODUCTO;
+                this.ID_PRODUCTO = ID_PRODUCTO;
+            }
+        }
+
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult getProductos()
+        {
+
+
+            using (var productoDao = new ProductoDao())
+            {
+
+                IList<Producto> productos = productoDao.GetAll<Producto>();
+                List<SelectOption> ListaProductosPersonalizada = new List<SelectOption>();
+
+                foreach (Producto producto in productos)
+                {
+                    ListaProductosPersonalizada.Add(new SelectOption(producto.NOMBRE_PRODUCTO, producto.ID_PRODUCTO));
+                }
+
+                productoDao.Close();
+
+                return Json(ListaProductosPersonalizada, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
 
         [HttpGet]
         [AllowCrossSiteJson]

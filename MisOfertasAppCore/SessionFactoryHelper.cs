@@ -45,6 +45,7 @@ namespace MisOfertasAppCore
                 .Mappings(m => m.FluentMappings.Add<UsuarioMap>())
                 .Mappings(m => m.FluentMappings.Add<OfertaMap>())
                 .Mappings(m => m.FluentMappings.Add<ProductoMap>())
+                .Mappings(m => m.FluentMappings.Add<ImagenMap>())
                 .Mappings(m => m.FluentMappings.Add<PreferenciaTiendaUsuarioMap>())
                 .Mappings(m => m.FluentMappings.Add<PreferenciaRubroUsuarioMap>())
                 .Mappings(m => m.FluentMappings.Add<WsVentasRealizadasMap>())

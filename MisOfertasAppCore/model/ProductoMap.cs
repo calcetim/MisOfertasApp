@@ -19,8 +19,8 @@ namespace MisOfertasAppCore.data.model
             Map(x => x.ES_PERECIBLE).Not.Nullable().Column("ES_PERECIBLE");
             Map(x => x.FECHA_VENCIMIENTO).Column("FECHA_VENCIMIENTO");
             Map(x => x.IS_ACTIVE).Column("IS_ACTIVE");
-            References(x => x.Area).Column("RUBRO_ID");
-            HasMany(x => x.Ofertas).KeyColumn("ID_OFERTA");
+            References(x => x.Area).Column("RUBRO_ID").LazyLoad();
+            HasMany(x => x.Ofertas).KeyColumn("PRODUCTO_ID");
 
         }
 

@@ -24,6 +24,7 @@ namespace MisOfertasAppCore.data.model
         public virtual string DOS_POR_UNO { get; set; }
         public virtual string IS_ACTIVE { get; set; }
         public virtual string IMAGEN_ID { get; set; }
-        
+        /*public virtual IList<Producto> Productos { get; set; }*/
+
     }
 }
