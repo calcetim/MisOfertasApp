@@ -17,7 +17,6 @@ C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\bin\Release\NHibernate.xm
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\bin\Release\NHibernate.Caches.SysCache.xml
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\bin\Release\Remotion.Linq.xml
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\bin\Release\Remotion.Linq.EagerFetching.xml
-C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.csprojResolveAssemblyReference.cache
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.csproj.CoreCompileInputs.cache
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.csproj.CopyComplete
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.dll

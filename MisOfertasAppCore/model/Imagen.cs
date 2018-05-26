@@ -17,7 +17,7 @@ namespace MisOfertasAppCore.data.model
         public virtual string NOMBRE_ARCHIVO { get; set; }
         public virtual string FORMATO { get; set; }
         public virtual string EXTENSION { get; set; }
-        public virtual Oferta Oferta { get; set; }
+        //public virtual Oferta Oferta { get; set; }
 
         public virtual byte[] comprimir(byte[] data)
         {

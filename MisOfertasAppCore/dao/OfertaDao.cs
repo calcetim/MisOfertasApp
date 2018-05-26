@@ -59,9 +59,6 @@ namespace MisOfertasAppCore.data.dao
                     {
                         obj_oferta.IS_ACTIVE = "1";
 
-
-                        session.Save(obj_oferta);
-
                         foreach (string file in archivos)
                         {
                             var fileContent = archivos[file];
@@ -82,17 +79,14 @@ namespace MisOfertasAppCore.data.dao
                                 doc.NOMBRE_ARCHIVO = nombreArchivo;
                                 doc.FORMATO = fileContent.ContentType;
                                 doc.EXTENSION = extension;
-                                doc.Oferta = new Oferta
-                                {
-                                    IMAGEN_ID = obj_oferta.ID_OFERTA.ToString()
-                                };
 
-                                session.Save(doc);
+                                
+                                obj_oferta.Imagen = doc;
 
                             }
                         }
 
-
+                        session.Save(obj_oferta);
                         transaction.Commit();
 
                         mensaje = "Consulta Ingresada";

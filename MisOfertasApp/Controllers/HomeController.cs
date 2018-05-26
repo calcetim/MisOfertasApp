@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using NHibernate;
 using Newtonsoft.Json;
 using System.Net;
+using System.IO;
 
 namespace MisOfertasApp.Controllers
 {
@@ -103,6 +104,48 @@ namespace MisOfertasApp.Controllers
 
 
             return Json(resultado);
+        }
+
+
+        [HttpPost]
+        [AllowCrossSiteJson]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public FileStreamResult getArchivo(long id)
+        {
+            ImagenDao doc = new ImagenDao();
+            var documento = doc.GetReference<IImagen>(id);
+
+            MemoryStream ms = new MemoryStream(documento.descomprimir(documento.IMAGEN));
+            doc.Close();
+
+
+            return new FileStreamResult(ms, documento.FORMATO) { FileDownloadName = documento.NOMBRE_ARCHIVO };
+            //return new FileStreamResult(new FileStream(ms.ToString(), FileMode.Open), documento.FORMATO);
+        }
+
+
+        [HttpGet]
+        public FileStreamResult ViewImage(long id)
+        {
+            ImagenDao doc = new ImagenDao();
+            var documento = doc.GetReference<IImagen>(id);
+
+            MemoryStream ms = new MemoryStream(documento.descomprimir(documento.IMAGEN));
+            doc.Close();
+
+            return new FileStreamResult(ms, documento.FORMATO);
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult GetFile(long id)
+        {
+            // No need to dispose the stream, MVC does it for you
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "myimage.png");
+            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStreamResult result = new FileStreamResult(stream, "image/png");
+            result.FileDownloadName = "image.png";
+            return result;
         }
 
 
@@ -213,6 +256,7 @@ namespace MisOfertasApp.Controllers
             return View();
         }
 
+        
         public ActionResult PublicarOfertas()
         {
 

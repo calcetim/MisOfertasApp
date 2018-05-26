@@ -10,5 +10,11 @@ namespace MisOfertasAppCore.data.Interface
     {
         long ID_IMAGEN { get; set; }
         byte[] IMAGEN { get; set; }
+        string NOMBRE_ARCHIVO { get; set; }
+        string FORMATO { get; set; }
+        string EXTENSION { get; set; }
+        byte[] comprimir(byte[] data);
+        byte[] descomprimir(byte[] data);
+
     }
 }

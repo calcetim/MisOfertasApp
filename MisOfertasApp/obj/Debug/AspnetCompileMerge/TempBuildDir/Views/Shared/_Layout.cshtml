@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&subset=latin-ext,vietnamese" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -33,7 +34,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "MisOfertasProducto", "Home")</li>
-                    <li>@Html.ActionLink("Productos", "ListadoProductosOfertas", "Home")</li>
+                    <li>@Html.ActionLink("Productos en Oferta", "ListadoProductosOfertas", "Home")</li>
+                    <li>@Html.ActionLink("Publicar Oferta", "PublicarOfertas", "Home")</li>
                     <li>@Html.ActionLink("Mi Cuenta", "MiCuenta", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -90,7 +92,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - MisOfertasApp</p>
+            <p>&copy; @DateTime.Now.Year -<b><i> MisOfertasApp</i></b></p>
         </footer>
     </div>
 

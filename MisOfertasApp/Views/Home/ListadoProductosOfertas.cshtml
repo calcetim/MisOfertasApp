@@ -25,7 +25,7 @@
                     "data": null,
                     "defaultContent": "<button class=\"btn btn - primary\">Ver Más</button>"
                 }, {
-                        "targets": [6],
+                        "targets": [7],
                         "visible": false,
                         "searchable": false
                     }
@@ -58,14 +58,14 @@
                     }
             });
 
-            
+
 
             $('#table_id tbody').on('click', 'button', function () {
                 var data = table.row($(this).parents('tr')).data();
-                var ruta_producto = '@Url.Action("OfertaProductoDetalle", "Home", new { id = "js-id" })'.replace("js-id", encodeURIComponent(data[6]));
+                var ruta_producto = '@Url.Action("OfertaProductoDetalle", "Home", new { id = "js-id" })'.replace("js-id", encodeURIComponent(data[7]));
                 window.location.href = ruta_producto;
 
-                alert(window.location.href);
+                //alert(window.location.href);
                 //alert(data[0] + "'s salary is: " + data[6]);
             });
 
@@ -86,6 +86,7 @@
             <thead>
                 <tr>
                     <th>Nombre Producto</th>
+                    <th>Tienda</th>
                     <th>Stock</th>
                     <th>Precio Nomal</th>
                     <th>Precio Oferta</th>
@@ -99,16 +100,27 @@
 
                 @foreach (var oferta in Model)
                 {
-                <tr>
-                    <td>@oferta.Producto.NOMBRE_PRODUCTO</td>
-                    <td>@oferta.STOCK</td>
-                    <td>@oferta.PRECIO</td>
-                    <td>@oferta.PRECIO</td>
-                    <td>@oferta.PCT_DESCUENTO% </td>
-                    <td>@oferta.DOS_POR_UNO</td>
-                    <td>@oferta.Producto.ID_PRODUCTO</td>
-                    <td></td>
-                </tr>
+                    <tr>
+                        <td>@oferta.Producto.NOMBRE_PRODUCTO</td>
+                        <td>@oferta.Tienda.NOMBRE</td>
+                        <td>@oferta.STOCK</td>
+                        <td style="color:forestgreen;font-weight:bold;">@oferta.PRECIO.ToString("C")</td>
+                        <td style="color:darkred;font-weight:bold;">@oferta.PRECIO_OFERTA.ToString("C")</td>
+                        <td>@oferta.PCT_DESCUENTO% </td>
+                        <td>
+                            @if (oferta.DOS_POR_UNO == "0")
+                            {
+                                <p> SI </p>
+                            }
+                            else
+                            {
+                                <p> NO </p>
+
+                            }
+                        </td>
+                        <td>@oferta.Producto.ID_PRODUCTO</td>
+                        <td></td>
+                    </tr>
                 }
             </tbody>
         </table>

@@ -14,7 +14,7 @@ namespace MisOfertasAppCore.data.Interface
         string NOMBRE_PRODUCTO { get; set; }
         Area Area { get; set; }
         long ES_PERECIBLE { get; set; }
-        DateTime FECHA_VENCIMIENTO { get; set; }
+        string FECHA_VENCIMIENTO { get; set; }
         string IS_ACTIVE { get; set; }
         IList<Oferta> Ofertas { get; set; }
 

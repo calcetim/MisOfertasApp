@@ -13,12 +13,14 @@ namespace MisOfertasAppCore.data.model
         {
             Table("IMAGEN_OFERTA");
             LazyLoad();
+            Cache.ReadOnly().IncludeAll();
+            Cache.Region("Duracion5H");
             Id(x => x.ID_IMAGEN).GeneratedBy.Identity().Column("ID_IMAGEN").GeneratedBy.Sequence("SEQ_IMAGEN_ID"); ;
             Map(x => x.IMAGEN).Not.Nullable().Column("IMAGEN");
             Map(x => x.NOMBRE_ARCHIVO).Column("NOMBRE_ARCHIVO");
             Map(x => x.EXTENSION).Column("EXTENSION");
             Map(x => x.FORMATO).Column("FORMATO");
-            References(x => x.Oferta).Column("IMAGEN_ID").Not.LazyLoad();
+            //References(x => x.Oferta).Column("IMAGEN_ID").Not.LazyLoad();
         }
 
     }
