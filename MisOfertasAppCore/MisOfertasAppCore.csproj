@@ -55,8 +55,10 @@
       <HintPath>..\packages\Remotion.Linq.EagerFetching.2.1.0\lib\net45\Remotion.Linq.EagerFetching.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
@@ -72,6 +74,7 @@
     <Compile Include="business\UsuarioSesionBO.cs" />
     <Compile Include="dao\AreaDao.cs" />
     <Compile Include="dao\ComunaDao.cs" />
+    <Compile Include="dao\ImagenDao.cs" />
     <Compile Include="dao\OfertaDao.cs" />
     <Compile Include="dao\PersonaDao.cs" />
     <Compile Include="dao\PreferenciaRubroUsuarioDao.cs" />
@@ -83,6 +86,7 @@
     <Compile Include="dao\WsVentasRealizadasDao.cs" />
     <Compile Include="interface\IArea.cs" />
     <Compile Include="interface\IComuna.cs" />
+    <Compile Include="interface\IImagen.cs" />
     <Compile Include="interface\IOferta.cs" />
     <Compile Include="interface\IPersona.cs" />
     <Compile Include="interface\IPreferenciaRubroUsuario.cs" />
@@ -96,6 +100,8 @@
     <Compile Include="model\AreaMap.cs" />
     <Compile Include="model\Comuna.cs" />
     <Compile Include="model\ComunaMap.cs" />
+    <Compile Include="model\Imagen.cs" />
+    <Compile Include="model\ImagenMap.cs" />
     <Compile Include="model\Oferta.cs" />
     <Compile Include="model\OfertaMap.cs" />
     <Compile Include="model\Persona.cs" />

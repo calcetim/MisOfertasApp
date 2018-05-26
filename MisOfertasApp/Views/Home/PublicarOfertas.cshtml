@@ -1,0 +1,279 @@
+﻿
+@model IList<MisOfertasAppCore.data.Interface.IOferta>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PublicarOfertas</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/DataTables/css/jquery.dataTables.css")" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
+    <script>
+        $(document).on('keyup', '#precio,#precio_oferta', function () {
+
+            var precio = $("#precio").val();
+            var precio_oferta = $("#precio_oferta").val();
+
+            var calcPrice = (precio_oferta / precio * 100);
+
+            if (isNaN(calcPrice))
+            {
+                 calcPrice = 0;
+            }
+
+
+            if (precio != "" || precio_oferta != "" || precio == "0" || precio_oferta == "0" ) {
+
+                if ($("#precio_oferta,#precio").is(":focus")) {
+                    $("#pct_descuento").val(calcPrice);
+                }
+
+
+                console.log(calcPrice);
+            }
+
+            
+
+        });
+
+        $(document).ready(function () {
+
+
+
+            var table =   $('#table_publicar_oferta').DataTable({
+                "columnDefs": [
+                    {
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": "<button class=\"btn btn - primary\">Eliminar</button>"
+                    },
+                    {
+                        "targets": -2,
+                        "data": null,
+                        "defaultContent": "<button class=\"btn btn - primary\">Editar</button>"
+                    }                    ,
+                    {
+                        "targets": [6],
+                        "visible": false,
+                        "searchable": false
+                    }
+
+                ],
+                "language":
+                    {
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    }
+            });
+
+
+
+            $('#table_publicar_oferta tbody').on('click', 'button', function () {
+                var data = table.row($(this).parents('tr')).data();
+                var ruta_producto = '@Url.Action("OfertaProductoDetalle", "Home", new { id = "js-id" })'.replace("js-id", encodeURIComponent(data[6]));
+                window.location.href = ruta_producto;
+                //alert(window.location.href);
+                //alert(data[0] + "'s salary is: " + data[6]);
+            });
+
+
+        });
+
+
+
+
+
+
+    </script>
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body ng-app="misOfertasApp">
+    <form id="formPublicarOferta" class="form-horizontal" ng-controller="publicarController" ng-submit="enviarFormularioIngresoOferta()">
+        <div class="container">
+            <h4><b>Ingreso de Ofertas</b></h4>
+            <hr />
+
+            <div style="padding-bottom:20px;">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6 form-group">
+                            <label class="col-sm-3">Producto :</label>
+                            <select class="form-control"
+                                    name='sel_productos'
+                                    id='sel_productos'
+                                    ng-model="form.producto_id"
+                                    ng-options="producto.ID_PRODUCTO as producto.NOMBRE_PRODUCTO for producto in productos track by producto.ID_PRODUCTO"
+                                    required>
+                                <option value="" selected>Selecione</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3">Tienda :</label>
+                            <select class="form-control"
+                                    name='sel_tiendas'
+                                    id='sel_tiendas'
+                                    ng-model="form.tienda_id"
+                                    ng-options="tienda.ID_TIENDA as tienda.NOMBRE for tienda in tiendas track by tienda.ID_TIENDA"
+                                    required>
+                                <option value="" selected>Selecione</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3">Precio :</label>
+                            <input type="number" id="precio" max="10" class="form-control" ng-model="form.precio"  required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3">Precio Oferta :</label>
+                            <input type="number"  id="precio_oferta" max="10" class="form-control" ng-model="form.precio_oferta"  required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3">Stock :</label>
+                            <input type="number" id="stock" min="1" max="999" class="form-control" ng-model="form.stock" pattern="\d*" maxlength="3" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3">% Descuento :</label>
+                            <input type="text" id="pct_descuento" class="form-control" ng-model="form.pct_descuento" disabled required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3">2x1 :</label>
+                            <input type="checkbox" ng-model="form.dos_por_uno" class="form-check-input">
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3" for="email">Imagen :</label>
+                            <input class="btn btn-primary" type="file" name="files[]" id="txtUploadFile" multiple="multiple">
+
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="control-label col-sm-3" for="email">Descripci&oacute;n :</label>
+                            <textarea class="form-control" rows="5" id="comment" ng-model="form.detalle"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-11 form-group" style="padding-right:80px;">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary" ng-click="validateIngresoOferta()">Agregar Oferta</button>
+                            <button type="submit" class="btn btn-default">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading"><b>Listado de Ofertas Ingresadas</b></div>
+        <div class="panel-body">
+            <table id="table_publicar_oferta" class="table table-striped jambo_table table-bordered bulk_action">
+
+                <!--class="display" -->
+                <thead>
+                    <tr>
+                        <th>Nombre Producto</th>
+                        <th>Stock</th>
+                        <th>Precio Nomal</th>
+                        <th>Precio Oferta</th>
+                        <th>% Descuento</th>
+                        <th>2 X 1</th>
+                        <th>id</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model == null)
+                    {
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <h2>NO EXISTEN OFERTAS</h2>
+
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+
+                        foreach (var oferta in Model)
+                        {
+                            <tr>
+                                <td>@oferta.Producto.NOMBRE_PRODUCTO</td>
+                                <td>@oferta.STOCK</td>
+                                <td>@oferta.PRECIO</td>
+                                <td>@oferta.PRECIO</td>
+                                <td>@oferta.PCT_DESCUENTO% </td>
+                                <td>@oferta.DOS_POR_UNO</td>
+                                <td>@oferta.Producto.ID_PRODUCTO</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+
+
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    @Scripts.Render("~/bundles/angular")
+</body>
+</html>

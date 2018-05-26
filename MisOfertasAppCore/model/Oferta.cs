@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,15 @@ namespace MisOfertasAppCore.data.model
         public virtual long PCT_DESCUENTO { get; set; }
         public virtual Tienda Tienda { get; set; }
         public virtual string STOCK { get; set; }
-        public virtual string PRECIO { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
+        public virtual long PRECIO { get; set; }
+        [DisplayFormat(DataFormatString = "{0:c}")]
+        public virtual long PRECIO_OFERTA { get; set; }
         public virtual string DOS_POR_UNO { get; set; }
         public virtual string IS_ACTIVE { get; set; }
-        public virtual string IMAGEN_ID { get; set; }
-        
+        public virtual string DETALLE { get; set; }
+        public virtual Imagen Imagen { get; set; }
+        /*public virtual IList<Producto> Productos { get; set; }*/
+
     }
 }

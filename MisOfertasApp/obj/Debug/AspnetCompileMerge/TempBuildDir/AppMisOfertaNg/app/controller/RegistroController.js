@@ -8,9 +8,6 @@
 
     //BUSCA TIENDAS DE INTERES
     $http.get(URL_SERVICIOS.BASE_URL + 'Listas/getTiendas').then(function (response) {
-
-
-        //"Tienda": { "ID_TIENDA": '1', 'NOMBRE': 'dakaassd' }
         $scope.tiendas =  response.data ;
     })
 

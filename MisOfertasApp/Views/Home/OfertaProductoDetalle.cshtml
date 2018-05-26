@@ -14,17 +14,15 @@
 </style>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
             <div class="panel panel-default  panel--styled">
                 <div class="panel-body">
                     <div class="col-md-12 panelTop">
                         <div class="col-md-4">
-                            <img class="img-responsive" src="https://home.ripley.cl/store/Attachment/WOP/D136/2000357193538/2000357193538_2.jpg" alt="" />
+                            <img class="img-responsive" src="@Url.Action("ViewImage", "Home", new { id = Model.Ofertas.FirstOrDefault().Imagen.ID_IMAGEN })" alt="" />
                         </div>
                         <div class="col-md-8">
                             <h2>@Model.NOMBRE_PRODUCTO</h2>
-                            <p>Lorem ipsum dolor sit amet, altera propriae iudicabit eos ne. Vel ut accusam tacimates, prima oratio ius ea. Et duo alii verterem principes, te quo putent melius fabulas, ei scripta eligendi appareat duo.</p>
+                            <p style="text-align: justify;">@Model.Ofertas.FirstOrDefault().DETALLE</p>
                             <p>STOCK : @Model.Ofertas.FirstOrDefault().STOCK </p>
                             <p>DESCUENTO : @Model.Ofertas.FirstOrDefault().PCT_DESCUENTO % </p>
                             <h5>Precio :  <span class="itemPrice">$@Model.Ofertas.Where(x => x.IS_ACTIVE == "1").FirstOrDefault().PRECIO </span></h5>
@@ -52,5 +50,3 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
