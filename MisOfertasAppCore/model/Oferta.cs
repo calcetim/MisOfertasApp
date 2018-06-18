@@ -21,9 +21,7 @@ namespace MisOfertasAppCore.data.model
         public virtual long PCT_DESCUENTO { get; set; }
         public virtual Tienda Tienda { get; set; }
         public virtual string STOCK { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
         public virtual long PRECIO { get; set; }
-        [DisplayFormat(DataFormatString = "{0:c}")]
         public virtual long PRECIO_OFERTA { get; set; }
         public virtual string DOS_POR_UNO { get; set; }
         public virtual string IS_ACTIVE { get; set; }

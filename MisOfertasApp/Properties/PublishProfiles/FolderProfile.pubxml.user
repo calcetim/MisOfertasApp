@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/04/2018 21:23:15</publishTime>
     </File>
     <File Include="AppMisOfertaNg/app/controller/PublicarController.js">
-      <publishTime>05/23/2018 10:57:55</publishTime>
+      <publishTime>05/26/2018 11:01:29</publishTime>
     </File>
     <File Include="AppMisOfertaNg/app/controller/RegistroController.js">
       <publishTime>05/18/2018 16:43:17</publishTime>
@@ -34,10 +34,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/03/2018 23:44:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>05/24/2018 17:31:39</publishTime>
+      <publishTime>05/26/2018 11:06:30</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>05/24/2018 17:31:39</publishTime>
+      <publishTime>05/26/2018 11:06:30</publishTime>
     </File>
     <File Include="bin/FluentNHibernate.dll">
       <publishTime>04/17/2018 10:57:28</publishTime>
@@ -76,19 +76,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/05/2012 11:08:46</publishTime>
     </File>
     <File Include="bin/MisOfertasApp.dll">
-      <publishTime>05/24/2018 16:37:29</publishTime>
+      <publishTime>05/26/2018 10:12:05</publishTime>
     </File>
     <File Include="bin/MisOfertasApp.pdb">
-      <publishTime>05/24/2018 16:37:29</publishTime>
+      <publishTime>05/26/2018 10:12:05</publishTime>
     </File>
     <File Include="bin/MisOfertasAppCore.dll">
-      <publishTime>05/24/2018 16:37:25</publishTime>
+      <publishTime>05/26/2018 10:12:01</publishTime>
     </File>
     <File Include="bin/MisOfertasAppCore.dll.config">
       <publishTime>04/27/2018 11:42:09</publishTime>
     </File>
     <File Include="bin/MisOfertasAppCore.pdb">
-      <publishTime>05/24/2018 16:37:25</publishTime>
+      <publishTime>05/26/2018 10:12:01</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/03/2014 19:33:56</publishTime>
@@ -783,6 +783,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/img/LOGO.JPG">
       <publishTime>04/03/2018 12:53:30</publishTime>
     </File>
+    <File Include="Content/img/NO_DISPONIBLE.jpg">
+      <publishTime>05/25/2018 11:45:30</publishTime>
+    </File>
     <File Include="Content/login.css">
       <publishTime>04/30/2018 12:44:56</publishTime>
     </File>
@@ -820,7 +823,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/03/2018 23:44:39</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>05/24/2018 17:31:35</publishTime>
+      <publishTime>05/26/2018 11:06:26</publishTime>
     </File>
     <File Include="Scripts/angular-animate.js">
       <publishTime>04/30/2018 10:50:33</publishTime>
@@ -3496,19 +3499,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/04/2018 22:09:41</publishTime>
     </File>
     <File Include="Views/Home/ListadoProductosOfertas.cshtml">
-      <publishTime>05/23/2018 12:53:35</publishTime>
+      <publishTime>05/25/2018 13:00:58</publishTime>
     </File>
     <File Include="Views/Home/MiCuenta.cshtml">
       <publishTime>05/09/2018 20:33:23</publishTime>
     </File>
     <File Include="Views/Home/MisOfertasProducto.cshtml">
-      <publishTime>05/23/2018 15:28:34</publishTime>
+      <publishTime>05/25/2018 12:57:07</publishTime>
     </File>
     <File Include="Views/Home/OfertaProductoDetalle.cshtml">
       <publishTime>05/23/2018 16:00:27</publishTime>
     </File>
     <File Include="Views/Home/PublicarOfertas.cshtml">
-      <publishTime>05/23/2018 16:37:19</publishTime>
+      <publishTime>05/26/2018 11:03:12</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/03/2018 23:44:39</publishTime>

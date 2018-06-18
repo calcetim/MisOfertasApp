@@ -20,6 +20,8 @@ namespace MisOfertasApp
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+			//ViewEngines.Engines.Add(new PdfViewEngine());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 

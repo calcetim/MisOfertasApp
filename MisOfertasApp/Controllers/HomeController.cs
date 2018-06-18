@@ -14,10 +14,13 @@ using NHibernate;
 using Newtonsoft.Json;
 using System.Net;
 using System.IO;
+using Rotativa;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace MisOfertasApp.Controllers
 {
-   
+
 
     public class HomeController : Controller
     {
@@ -61,6 +64,76 @@ namespace MisOfertasApp.Controllers
             return Json(Url.Action("Index", "Home"));
 
         }
+
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public JsonResult ValorarProducto(long codigo_venta)
+        {
+
+
+            using (var webClient = new WebClient())
+            {
+                //OBTENER EL STRINF DE DATOS
+                String datosJSON = webClient.DownloadString("http://localhost:82/");
+
+                var data = "";
+
+                GetWsVentasCollection lista_ventas = JsonConvert.DeserializeObject<GetWsVentasCollection>(datosJSON);
+
+
+                if (lista_ventas.ListaVentasCollection.Where(x => x.VENTAS_WS_ID.Equals(codigo_venta)).Count() > 0)
+                {
+                    data = "OK";
+                }
+                else
+                {
+                    data = "NO";
+                }
+
+                //lista_ventas.ListaVentasCollection.Where(x => x.VENTAS_WS_ID.Equals(codigo_venta)).FirstOrDefault();
+
+
+                //foreach (var item in lista_ventas.ListaVentasCollection)
+                //{
+                //    if (item.VENTAS_WS_ID == codigo_venta)
+                //    {
+
+                //        data = "OK";
+                //        break;
+                //    }
+                //    else {
+
+                //        data = "NO";
+                //    }
+
+                //}
+
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public ActionResult GenerarCuponPDF()
+        {
+
+            ViewBag.Titulo = "HOLA";
+
+            return View();
+
+        }
+
+        public ActionResult InprimirCuponDescuento() {
+
+
+            var q = new ActionAsPdf("GenerarCuponPDF");
+
+            return q;
+        }
+
+            
+
+
+
 
         [HttpPost]
         [AllowCrossSiteJson]

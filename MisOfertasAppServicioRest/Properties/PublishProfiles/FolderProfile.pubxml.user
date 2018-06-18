@@ -55,28 +55,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/05/2012 11:08:46</publishTime>
     </File>
     <File Include="bin/MisOfertasApp.dll">
-      <publishTime>05/11/2018 12:52:11</publishTime>
+      <publishTime>06/15/2018 17:49:03</publishTime>
     </File>
     <File Include="bin/MisOfertasApp.dll.config">
-      <publishTime>05/11/2018 12:30:09</publishTime>
+      <publishTime>06/14/2018 13:45:30</publishTime>
     </File>
     <File Include="bin/MisOfertasApp.pdb">
-      <publishTime>05/11/2018 12:52:11</publishTime>
+      <publishTime>06/15/2018 17:49:03</publishTime>
     </File>
     <File Include="bin/MisOfertasAppCore.dll">
-      <publishTime>05/11/2018 11:03:22</publishTime>
+      <publishTime>06/14/2018 18:14:01</publishTime>
     </File>
     <File Include="bin/MisOfertasAppCore.dll.config">
       <publishTime>04/27/2018 11:42:09</publishTime>
     </File>
     <File Include="bin/MisOfertasAppCore.pdb">
-      <publishTime>05/11/2018 11:03:22</publishTime>
+      <publishTime>06/14/2018 18:14:01</publishTime>
     </File>
     <File Include="bin/MisOfertasAppServicioRest.dll">
-      <publishTime>05/11/2018 12:52:15</publishTime>
+      <publishTime>06/15/2018 17:49:06</publishTime>
     </File>
     <File Include="bin/MisOfertasAppServicioRest.pdb">
-      <publishTime>05/11/2018 12:52:15</publishTime>
+      <publishTime>06/15/2018 17:49:06</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/03/2014 19:33:56</publishTime>
@@ -343,7 +343,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/05/2018 10:46:44</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/11/2018 12:51:29</publishTime>
+      <publishTime>06/14/2018 18:14:08</publishTime>
     </File>
   </ItemGroup>
 </Project>

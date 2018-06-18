@@ -21,3 +21,4 @@ C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasApp
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.csproj.CopyComplete
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.dll
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.pdb
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppCore\obj\Release\MisOfertasAppCore.csprojResolveAssemblyReference.cache

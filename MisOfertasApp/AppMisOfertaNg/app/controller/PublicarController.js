@@ -34,7 +34,7 @@
             console.log($scope.enviarFormularioIngresoOferta);
             $scope.enviarFormularioIngresoOferta = function () {
 
-                valor = $scope.form;
+                var valor = $scope.form;
 
                 var listaDatos = {
                             "STOCK": valor.stock,
@@ -51,7 +51,9 @@
                             }
                 };
 
+                
                 console.log(listaDatos);
+
 
                 $http({
                     method: 'POST',
@@ -61,13 +63,11 @@
                         var formData = new FormData();
                         formData.append("jsonData", angular.toJson(listaDatos));
 
-                        var existeArchivo = angular.isUndefined($scope.archivos);
-                        
-                        if (existeArchivo == false) {
+                  
                             for (var i = 0; i < $scope.archivos.length; i++) {
                                 formData.append("archivo_consulta_" + i, $scope.archivos[i]);
                             }
-                        }
+                        
 
                         return formData;
                     },
@@ -82,8 +82,7 @@
                         time: 5
                     });
 
-                    // SE RECARGA GRILLA DE OFERTAS
-                    $('#table_publicar_oferta').DataTable().ajax.reload();
+        
 
                     $(nombre_formulario).smkClear();
                     //var ruta_producto = '@Url.Action("PublicarOfertas", "Home")';

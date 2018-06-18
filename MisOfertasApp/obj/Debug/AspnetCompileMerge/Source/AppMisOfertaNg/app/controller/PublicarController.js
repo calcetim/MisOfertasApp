@@ -10,8 +10,11 @@
 
     //BUSCA PRODUCTOS
     $http.get(URL_SERVICIOS.BASE_URL + 'Listas/getTiendas').then(function (response) {
-
         $scope.tiendas = response.data;
+        console.log($scope.tiendas[1]);
+        $scope.form.tienda_id = $scope.tiendas[1];
+        
+       
     })
 
 
@@ -31,7 +34,7 @@
             console.log($scope.enviarFormularioIngresoOferta);
             $scope.enviarFormularioIngresoOferta = function () {
 
-                valor = $scope.form;
+                var valor = $scope.form;
 
                 var listaDatos = {
                             "STOCK": valor.stock,
@@ -48,7 +51,9 @@
                             }
                 };
 
+                
                 console.log(listaDatos);
+
 
                 $http({
                     method: 'POST',
@@ -58,19 +63,16 @@
                         var formData = new FormData();
                         formData.append("jsonData", angular.toJson(listaDatos));
 
-                        for (var i = 0; i < $scope.archivos.length; i++) {
-                            formData.append("archivo_consulta_" + i, $scope.archivos[i]);
-                        }
+                  
+                            for (var i = 0; i < $scope.archivos.length; i++) {
+                                formData.append("archivo_consulta_" + i, $scope.archivos[i]);
+                            }
+                        
 
                         return formData;
                     },
                     data: { jsonData: $scope.jsonData, files: $scope.archivos }
                 }).then(function (response) {
-
-
-
-
-                    //window.location.href = response.data;
 
                     //SE ENVIA MENSAJE  DE GRABACION CORRECTA
                     $.smkAlert({
@@ -80,14 +82,12 @@
                         time: 5
                     });
 
-                    // SE LIMPIA FORMULARIO UNA VEZ GRADO CORRECTAMENTE
-
+        
 
                     $(nombre_formulario).smkClear();
-
-
-
-
+                    //var ruta_producto = '@Url.Action("PublicarOfertas", "Home")';
+                    //alert(ruta_producto);
+                    //window.location.href = ruta_producto;
                 })
                     .catch(function (response) {
                         //SE ENVIA MENSAJE  DE GRABACION INCORRECTA

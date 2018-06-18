@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/DataTables/css/jquery.dataTables.css")" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
     <script>
-        $(document).on('keyup', '#precio,#precio_oferta', function () {
+        $(document).on('keyup', '#precio_mas,#precio_oferta_mas', function () {
 
-            var precio = $("#precio").val();
-            var precio_oferta = $("#precio_oferta").val();
+            var precio = $("#precio_mas").val();
+            var precio_oferta = $("#precio_oferta_mas").val();
 
             var calcPrice = (precio_oferta / precio * 100);
 
@@ -24,12 +24,11 @@
 
             if (precio != "" || precio_oferta != "" || precio == "0" || precio_oferta == "0" ) {
 
-                if ($("#precio_oferta,#precio").is(":focus")) {
-                    $("#pct_descuento").val(calcPrice);
+                if ($("#precio_oferta_mas,#precio_mas").is(":focus")) {
+                    $("#pct_descuento_mas").val(calcPrice);
                 }
 
 
-                console.log(calcPrice);
             }
 
             
@@ -148,11 +147,11 @@
                     <div class="form-group">
                         <div class="col-sm-6 form-group">
                             <label class="control-label col-sm-3">Precio :</label>
-                            <input type="number" id="precio" max="10" class="form-control" ng-model="form.precio"  required>
+                            <input type="number" id="precio_mas" class="form-control" ng-model="form.precio"  required>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label class="control-label col-sm-3">Precio Oferta :</label>
-                            <input type="number"  id="precio_oferta" max="10" class="form-control" ng-model="form.precio_oferta"  required>
+                            <input type="number" id="precio_oferta_mas" class="form-control" ng-model="form.precio_oferta"  required>
                         </div>
                     </div>
                 </div>
@@ -160,11 +159,11 @@
                     <div class="form-group">
                         <div class="col-sm-6 form-group">
                             <label class="control-label col-sm-3">Stock :</label>
-                            <input type="number" id="stock" min="1" max="999" class="form-control" ng-model="form.stock" pattern="\d*" maxlength="3" required>
+                            <input type="number" id="stock_mas" min="1" max="999" class="form-control" ng-model="form.stock" pattern="\d*" maxlength="3" required>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label class="control-label col-sm-3">% Descuento :</label>
-                            <input type="text" id="pct_descuento" class="form-control" ng-model="form.pct_descuento" disabled required>
+                            <input type="text" id="pct_descuento_mas" class="form-control" ng-model="form.pct_descuento"  required>
                         </div>
                     </div>
                 </div>
