@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>MisOfertasApp</title>
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&subset=latin-ext,vietnamese" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -14,8 +14,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </head>
-
-
 
 
 <body>
@@ -35,8 +33,15 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "MisOfertasProducto", "Home")</li>
                     <li>@Html.ActionLink("Productos en Oferta", "ListadoProductosOfertas", "Home")</li>
-                    <li>@Html.ActionLink("Publicar Oferta", "PublicarOfertas", "Home")</li>
-                    <li>@Html.ActionLink("Mi Cuenta", "MiCuenta", "Home")</li>
+
+
+                    @if ((HttpContext.Current.Session["USUARIO_SESION"] as UsuarioSesionBO).tipoUsuario == 1)
+                    {
+                        <li>@Html.ActionLink("Publicar Oferta", "PublicarOfertas", "Home")</li>
+                    }
+
+
+                    @*<li>@Html.ActionLink("Mi Cuenta", "MiCuenta", "Home")</li>*@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -56,7 +61,7 @@
                                         </div>
                                         <div class="col-lg-8">
                                             <p class="text-left">
-                                               <strong>@((HttpContext.Current.Session["USUARIO_SESION"] as UsuarioSesionBO).tienda.ToUpper())</strong>
+                                                <strong>@((HttpContext.Current.Session["USUARIO_SESION"] as UsuarioSesionBO).tienda.ToUpper())</strong>
                                             </p>
                                             <p class="text-left small"><strong>@((HttpContext.Current.Session["USUARIO_SESION"] as UsuarioSesionBO).email)</strong></p>
                                             <p class="text-left">
@@ -72,7 +77,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <p>
-                                                <a href="~/Home/CierreSesion" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                                                <a href="~/Home/CierreSesion" class="btn btn-danger btn-block">Cerrar Sesi&oacute;n</a>
                                             </p>
                                         </div>
                                     </div>

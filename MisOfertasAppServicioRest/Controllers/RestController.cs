@@ -32,8 +32,14 @@ namespace MisOfertasAppServicioRest.Controllers
 
                 IList<IWsVentasRealizadas> VentasRealizadas = WsVentasDao.getWS();
 
+                var resultado = new
+                {
+                    ListaVentasCollection = VentasRealizadas
+                };
 
-                return Json(VentasRealizadas, JsonRequestBehavior.AllowGet);
+
+
+                return Json(resultado, JsonRequestBehavior.AllowGet);
             }
 
 

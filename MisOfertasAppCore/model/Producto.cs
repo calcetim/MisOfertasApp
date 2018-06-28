@@ -22,7 +22,6 @@ namespace MisOfertasAppCore.data.model
         public virtual long ES_PERECIBLE { get; set; }
         public virtual string FECHA_VENCIMIENTO { get; set; }
         public virtual string IS_ACTIVE { get; set; }
-
         public virtual IList<Oferta> Ofertas { get; set; }
 
     }

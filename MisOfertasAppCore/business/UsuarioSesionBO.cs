@@ -19,6 +19,8 @@ namespace MisOfertasAppCore.data.business
         public long tiendaId { get; set; }
         public string tienda { get; set; }
         public bool accesoValido { get; set; }
+        public long tipoUsuario { get; set; }
+
         public string email { get; set; }
         public DateTime fechaIntentoAcceso { get; set; }
         public DateTime ipIntentoAcceso { get; set; }

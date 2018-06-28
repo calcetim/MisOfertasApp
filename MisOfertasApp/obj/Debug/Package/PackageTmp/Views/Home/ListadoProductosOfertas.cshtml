@@ -62,10 +62,10 @@
 
             $('#table_id tbody').on('click', 'button', function () {
                 var data = table.row($(this).parents('tr')).data();
-                var ruta_producto = '@Url.Action("OfertaProductoDetalle", "Home", new { id = "js-id" })'.replace("js-id", encodeURIComponent(data[7]));
+                var ruta_producto = '@Url.Action("OfertaProductoDetalle", "Home", new { id_producto = "js-id" })'.replace("js-id", encodeURIComponent(data[7]));
                 window.location.href = ruta_producto;
 
-                alert(window.location.href);
+                //alert(window.location.href);
                 //alert(data[0] + "'s salary is: " + data[6]);
             });
 
@@ -104,8 +104,8 @@
                         <td>@oferta.Producto.NOMBRE_PRODUCTO</td>
                         <td>@oferta.Tienda.NOMBRE</td>
                         <td>@oferta.STOCK</td>
-                        <td>@oferta.PRECIO</td>
-                        <td>@oferta.PRECIO</td>
+                        <td style="color:forestgreen;font-weight:bold;">@oferta.PRECIO.ToString("C")</td>
+                        <td style="color:darkred;font-weight:bold;">@oferta.PRECIO_OFERTA.ToString("C")</td>
                         <td>@oferta.PCT_DESCUENTO% </td>
                         <td>
                             @if (oferta.DOS_POR_UNO == "0")

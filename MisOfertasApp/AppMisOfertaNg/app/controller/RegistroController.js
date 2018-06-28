@@ -95,6 +95,9 @@
 
         var nombre_formulario = '#register-form';
 
+
+        console.log($scope.enviarFormularioIngresoOferta);
+
         if ($(nombre_formulario).smkValidate()) {
             $scope.enviarFormularioRegistro = function () {
                 valor = $scope.form;

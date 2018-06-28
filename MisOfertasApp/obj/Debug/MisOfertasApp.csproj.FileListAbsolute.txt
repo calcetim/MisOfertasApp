@@ -106,3 +106,9 @@ C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\obj\Debug\MisOfertasApp.cspro
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\obj\Debug\MisOfertasApp.csproj.CopyComplete
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\obj\Debug\MisOfertasApp.dll
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\obj\Debug\MisOfertasApp.pdb
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\bin\itextsharp.dll
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\bin\Microsoft.ReportViewer.WebForms.DLL
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\bin\Rotativa.dll
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasApp\bin\itextsharp.xml

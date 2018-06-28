@@ -9,26 +9,65 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/DataTables/css/jquery.dataTables.css")" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.js")"></script>
     <script>
+        $(document).on('keyup', '#precio_mas,#precio_oferta_mas', function () {
 
+            var precio = $("#precio_mas").val();
+            var precio_oferta = $("#precio_oferta_mas").val();
+
+            //var calcPrice = (precio_oferta / precio * 100);
+
+
+            var porc = precio - precio_oferta;
+            //console.log(porc);
+            var calcPrice = porc / (precio / 100);
+
+
+            if (isNaN(calcPrice))
+            {
+                 calcPrice = 0;
+            }
+
+
+            if (precio != "" || precio_oferta != "" || precio == "0" || precio_oferta == "0" ) {
+
+                if ($("#precio_oferta_mas,#precio_mas").is(":focus")) {
+                    $("#PCT_DESCUENTO").val(calcPrice);
+                }
+
+
+            }
+
+            
+
+        });
 
         $(document).ready(function () {
+
+
+
             var table =   $('#table_publicar_oferta').DataTable({
                 "columnDefs": [
                     {
                     "targets": -1,
                     "data": null,
-                    "defaultContent": "<button class=\"btn btn - primary\">Eliminar</button>"
+                        "defaultContent": "<button class=\"btn btn-primary editor_delete\">Eliminar</button>"
                     },
                     {
                         "targets": -2,
                         "data": null,
-                        "defaultContent": "<button class=\"btn btn - primary\">Editar</button>"
+                        "defaultContent": "<button class=\"btn btn-primary editor_edit\" id=\"btnEditarPublicacion\" >Editar</button>"
                     }                    ,
                     {
                         "targets": [6],
                         "visible": false,
                         "searchable": false
+                    },
+                    {
+                        "targets": [7],
+                        "visible": false,
+                        "searchable": false
                     }
+
 
                 ],
                 "language":
@@ -59,23 +98,35 @@
             });
 
 
+  
 
-            $('#table_publicar_oferta tbody').on('click', 'button', function () {
+
+
+
+            @*$('#table_publicar_oferta tbody').on('click', 'button', function () {
                 var data = table.row($(this).parents('tr')).data();
                 var ruta_producto = '@Url.Action("OfertaProductoDetalle", "Home", new { id = "js-id" })'.replace("js-id", encodeURIComponent(data[6]));
                 window.location.href = ruta_producto;
-                alert(window.location.href);
+                //alert(window.location.href);
                 //alert(data[0] + "'s salary is: " + data[6]);
-            });
+            });*@
 
 
         });
 
 
+
+
+
+
     </script>
     <style>
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+
+        }
+        .has-feedback .smk-error-msg {
+            padding-right:30px;
         }
     </style>
 </head>
@@ -85,93 +136,108 @@
             <h4><b>Ingreso de Ofertas</b></h4>
             <hr />
 
+            <input type="hidden" id="" class="form-control" ng-model="form.ID_OFERTA" ng-value="form.ID_OFERTA">
+            <input type="hidden" id="" class="form-control" ng-model="form.ID_IMAGEN" ng-value="form.ID_IMAGEN">
             <div style="padding-bottom:20px;">
                 <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-6 form-group">
-                            <label class="col-sm-3">Producto :</label>
+
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Producto :</label>
                             <select class="form-control"
                                     name='sel_productos'
                                     id='sel_productos'
-                                    ng-model="form.producto_id"
+                                    ng-model="form.ID_PRODUCTO"
                                     ng-options="producto.ID_PRODUCTO as producto.NOMBRE_PRODUCTO for producto in productos track by producto.ID_PRODUCTO"
+                                    ng-value="form.ID_PRODUCTO"
                                     required>
                                 <option value="" selected>Selecione</option>
                             </select>
                         </div>
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3">Tienda :</label>
+                    </div>
+
+
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Tienda :</label>
                             <select class="form-control"
                                     name='sel_tiendas'
                                     id='sel_tiendas'
-                                    ng-model="form.tienda_id"
+                                    ng-model="form.ID_TIENDA"
                                     ng-options="tienda.ID_TIENDA as tienda.NOMBRE for tienda in tiendas track by tienda.ID_TIENDA"
+                                    ng-value="form.ID_TIENDA"
                                     required>
                                 <option value="" selected>Selecione</option>
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3">Precio :</label>
-                            <input type="text" maxlength="10" class="form-control" ng-model="form.precio" required>
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3">Precio Oferta :</label>
-                            <input type="text" maxlength="10" class="form-control" ng-model="form.precio_oferta" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3">Stock :</label>
-                            <input type="text" class="form-control" ng-model="form.stock" required>
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3">% Descuento :</label>
-                            <input type="text" class="form-control" ng-model="form.pct_descuento" required>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3">2x1 :</label>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Precio :</label>
+                            <input type="number" id="precio_mas" class="form-control" ng-model="form.PRECIO" ng-value="form.PRECIO" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Precio Oferta :</label>
+                            <input type="number" id="precio_oferta_mas" class="form-control" ng-model="form.PRECIO_OFERTA" ng-value="form.PRECIO_OFERTA" required>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Stock :</label>
+                            <input type="text" id="stock_mas" min="1" class="form-control" ng-model="form.STOCK" ng-value="form.STOCK" maxlength="10" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">% Descuento :</label>
+                            <input type="text" id="PCT_DESCUENTO" class="form-control" ng-model="form.PCT_DESCUENTO" ng-value="form.PCT_DESCUENTO" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">2x1 :</label>
                             <input type="checkbox" ng-model="form.dos_por_uno" class="form-check-input">
-
                         </div>
                     </div>
-                </div>
 
-
-
-
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3" for="email">Imagen :</label>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="email">Imagen :</label>
                             <input class="btn btn-primary" type="file" name="files[]" id="txtUploadFile" multiple="multiple">
-
                         </div>
-                        <div class="col-sm-6 form-group">
-                            <label class="control-label col-sm-3" for="email">Descripci&oacute;n :</label>
-                            <textarea class="form-control" rows="5" id="comment" ng-model="form.detalle"></textarea>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label class="control-label">Descripci&oacute;n :</label>
+                            <textarea class="form-control" style="min-width: 100%" rows="5" id="comment" ng-model="form.DETALLE" ng-value="form.DETALLE" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-11 form-group" style="padding-right:80px;">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary" ng-click="validateIngresoOferta()">Agregar Oferta</button>
+                                <button type="submit" class="btn btn-default">Cancelar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-sm-11 form-group" style="padding-right:80px;">
-                        <div class="pull-right">
-                            <button type="submit" class="btn btn-primary" ng-click="validateIngresoOferta()">Agregar Oferta</button>
-                            <button type="submit" class="btn btn-default">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
+
+      
             </div>
         </div>
 
@@ -195,6 +261,7 @@
                         <th>% Descuento</th>
                         <th>2 X 1</th>
                         <th>id</th>
+                        <th>id_oferta</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -215,17 +282,18 @@
 
                         foreach (var oferta in Model)
                         {
-                            <tr>
-                                <td>@oferta.Producto.NOMBRE_PRODUCTO</td>
-                                <td>@oferta.STOCK</td>
-                                <td>@oferta.PRECIO</td>
-                                <td>@oferta.PRECIO</td>
-                                <td>@oferta.PCT_DESCUENTO% </td>
-                                <td>@oferta.DOS_POR_UNO</td>
-                                <td>@oferta.Producto.ID_PRODUCTO</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                        <tr>
+                            <td>@oferta.Producto.NOMBRE_PRODUCTO</td>
+                            <td>@oferta.STOCK</td>
+                            <td>@oferta.PRECIO</td>
+                            <td>@oferta.PRECIO</td>
+                            <td>@oferta.PCT_DESCUENTO% </td>
+                            <td>@oferta.DOS_POR_UNO</td>
+                            <td>@oferta.Producto.ID_PRODUCTO</td>
+                            <td>@oferta.ID_OFERTA</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                         }
 
 

@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/css")
+
+
+@using MisOfertasApp.Models
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CUPON DE DESCUENTOS MisOfertasApp</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&subset=latin-ext,vietnamese" rel="stylesheet">
+
+</head>
+<body>
+    <div class="row">
+        <div class="container">
+            <div style="border:1px solid;">
+                <div class="col-md-4" style="padding:10px;">
+                    <div>
+                        <img src="@Url.Content("~/Content/img/LOGO.JPG")" width="150">
+                        <span style="font-size:20px;font-style:italic; font-weight:bold;text-align:right;">
+                            FELICITACIONES HAS OBTENIDO UN CUPON DE DESCUENTO.
+                        </span>
+                    </div>
+
+                </div>
+                <div class="pull-right">
+                </div>
+                <div class="col-md-4" style="padding:10px;font-size:22px;text-align:justify;">
+                    <span style="font-weight:bold;">Estimado(a) :  @ViewBag.NombreUsuario  </span>
+                    <p></p>
+                    <span>
+                        Gracias por valorar este producto.  Por valorar este producto se le otorga el siguiente cupón de descuento el cual podrá hacer valido en cualquiera de las tiendas asociadas a esta promoción, además se le asigna el siguiente puntaje de descuento 10%.
+                        <br />
+                        <br />
+
+
+                        <b>Importante :</b> Recuerde que entre más artículos que usted valore, más descuentos acumula.
+
+                        Atte. Equipo MisOfertasApp
+                    </span>
+                </div>
+                <div class="col-md-4 col-md-offset-4" style="padding:150px;">
+
+                    <div class="yellow-background">
+
+                        <div class="pull-right">
+                            @{
+                                var a = IDAtomationBarCode.BarcodeImageGenerator(@ViewBag.CodigoVenta);
+                                <img src="@Url.Content(a)" alt="Alternate Text" />
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

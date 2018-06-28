@@ -107,3 +107,4 @@ C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicioRest\obj\Debug\MisOfer
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicioRest\obj\Debug\MisOfertasAppServicioRest.csproj.CopyComplete
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicioRest\obj\Debug\MisOfertasAppServicioRest.dll
 C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicioRest\obj\Debug\MisOfertasAppServicioRest.pdb
+C:\Users\toppa\Desktop\MisOfertasApp\MisOfertasAppServicioRest\bin\Rotativa.dll

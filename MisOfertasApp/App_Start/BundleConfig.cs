@@ -41,6 +41,7 @@ namespace MisOfertasApp
                       "~/AppMisOfertaNg/app/controller/RegistroController.js",
                       "~/AppMisOfertaNg/app/controller/LoginController.js",
                       "~/AppMisOfertaNg/app/controller/PublicarController.js",
+                      "~/AppMisOfertaNg/app/controller/ProductoController.js",
                       "~/Scripts/global.js"
                       ));
 
