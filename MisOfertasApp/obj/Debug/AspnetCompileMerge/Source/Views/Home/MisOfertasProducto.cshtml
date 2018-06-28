@@ -53,7 +53,7 @@
 else
 {
 
-                        <img src="@Url.Action("ViewImage", "Home", new { id = oferta.Imagen.ID_IMAGEN })" alt="...">
+                        <img src="@Url.Action("ViewImage", "Home", new { id = oferta.Imagen.ID_IMAGEN })"  width="240" height="240" alt="...">
 }
 
                             <h4>@oferta.Producto.NOMBRE_PRODUCTO</h4>
@@ -74,7 +74,7 @@ else
                                     <p class="price" style="color:darkred;">@oferta.PRECIO_OFERTA.ToString("C")</p>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <a href="@Url.Action("OfertaProductoDetalle", "Home", new { id = oferta.Producto.ID_PRODUCTO })">	<button class="btn btn-info right"> Ver m&aacute;s</button></a>
+                                    <a href="@Url.Action("OfertaProductoDetalle", "Home", new { id_producto = oferta.Producto.ID_PRODUCTO })">	<button class="btn btn-info right"> Ver m&aacute;s</button></a>
 
                                 </div>
 

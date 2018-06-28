@@ -196,6 +196,7 @@
     <Content Include="AppMisOfertaNg\app\controller\ProductoController.js" />
     <Content Include="AppMisOfertaNg\app\controller\PublicarController.js" />
     <Content Include="AppMisOfertaNg\app\controller\RegistroController.js" />
+    <Content Include="Content\bootstrap-stars.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -521,6 +522,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.barrating.min.js" />
     <Content Include="Scripts\jquery.Rut.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

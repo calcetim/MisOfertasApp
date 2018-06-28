@@ -47,6 +47,56 @@ namespace MisOfertasAppCore.data.dao
             return null;
         }
 
+
+
+        public bool elimiarOfertaPorProducto(long idOferta)
+        {
+            
+
+            try
+            {
+
+
+                var session = this.getSession();
+                session.BeginTransaction();
+
+
+                Oferta obj_oferta = new Oferta();
+
+                obj_oferta = session.CreateQuery(@"select Ofe from Oferta Ofe             
+                                                        where Ofe.ID_OFERTA=:idOferta")
+                                                   .SetInt64("idOferta", idOferta).UniqueResult<Oferta>();
+
+
+                if (obj_oferta != null)
+                {
+                    session.Delete(obj_oferta);
+                    session.Transaction.Commit();
+                    return true;
+
+                }
+                else {
+                    return false;
+                }
+
+              
+
+
+
+
+
+
+            }
+            catch (Exception error)
+            {
+
+                log.Error("->ERROR DE SISTEMA", error);
+
+            }
+
+            return false;
+        }
+
         public bool ingresarOfertaImagen(IOferta obj_oferta, out string mensaje, HttpFileCollectionBase archivos)
         {
 
@@ -86,7 +136,7 @@ namespace MisOfertasAppCore.data.dao
                             }
                         }
 
-                        session.Save(obj_oferta);
+                        session.SaveOrUpdate(obj_oferta);
                         transaction.Commit();
 
                         mensaje = "Consulta Ingresada";

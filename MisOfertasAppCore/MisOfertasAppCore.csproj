@@ -83,6 +83,7 @@
     <Compile Include="dao\RegionDao.cs" />
     <Compile Include="dao\TiendaDao.cs" />
     <Compile Include="dao\UsuarioDao.cs" />
+    <Compile Include="dao\ValoracionDao.cs" />
     <Compile Include="dao\WsVentasRealizadasDao.cs" />
     <Compile Include="interface\IArea.cs" />
     <Compile Include="interface\IComuna.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="interface\IRegion.cs" />
     <Compile Include="interface\ITienda.cs" />
     <Compile Include="interface\IUsuario.cs" />
+    <Compile Include="interface\IValoracion.cs" />
     <Compile Include="interface\IWsVentasRealizadas.cs" />
     <Compile Include="model\Area.cs" />
     <Compile Include="model\AreaMap.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="model\TipoUsuarioMap.cs" />
     <Compile Include="model\Usuario.cs" />
     <Compile Include="model\UsuarioMap.cs" />
+    <Compile Include="model\Valoracion.cs" />
+    <Compile Include="model\ValoracionMap.cs" />
     <Compile Include="model\WsVentasRealizadas.cs" />
     <Compile Include="model\WsVentasRealizadasMap.cs" />
     <Compile Include="NHibernateSessionManager.cs" />

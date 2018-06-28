@@ -60,6 +60,7 @@ namespace MisOfertasAppCore.data.business
                         usuarioSesion.nombre           = sec_usuario.Persona.PRIMER_NOMBRE  +" "+ sec_usuario.Persona.APELLIDO_PATERNO + " " + segundoApellido;
                         usuarioSesion.tienda           = sec_usuario.Tienda == null ? "" : sec_usuario.Tienda.NOMBRE;
                         usuarioSesion.email            = sec_usuario.Persona.EMAIL == null ? "" : sec_usuario.Persona.EMAIL;
+                        usuarioSesion.tipoUsuario      = sec_usuario.TipoUsuario.ID_TIPO_USUARIO;
                         usuarioSesion.fechaSesion      = DateTime.Now;
                         usuarioSesion.accesoValido     = passwordMatch;
                         usuarioSesion.ip               = ip;

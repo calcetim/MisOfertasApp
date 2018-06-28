@@ -28,7 +28,6 @@ namespace MisOfertasApp.Controllers
         public ActionResult Index(string mensajeLogin)
         {
 
-
             ViewBag.Message = mensajeLogin;
             return View();
         }
@@ -50,6 +49,47 @@ namespace MisOfertasApp.Controllers
 
         }
 
+
+        [HttpPost]
+        public JsonResult editarPublicacion(long oferta_id)
+        {
+
+
+
+            var ProductoDao = new ProductoDao();
+            var producto = ProductoDao.GetReference<IProducto>(oferta_id);
+
+            var ofertas = new { producto.NOMBRE_PRODUCTO, producto.Ofertas.FirstOrDefault().PRECIO  , producto.Ofertas.FirstOrDefault().PRECIO_OFERTA , producto.Ofertas.FirstOrDefault().PCT_DESCUENTO , producto.Ofertas.FirstOrDefault().STOCK , producto.Ofertas.FirstOrDefault().Tienda.ID_TIENDA , producto.ID_PRODUCTO , producto.Ofertas.FirstOrDefault().DETALLE , producto.Ofertas.FirstOrDefault().ID_OFERTA , producto.Ofertas.FirstOrDefault().Imagen.ID_IMAGEN};
+            return this.Json(ofertas, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult eliminarPublicacion(long oferta_id)
+        {
+
+
+
+            OfertaDao  objOfertaDao = new OfertaDao();
+            bool result = objOfertaDao.elimiarOfertaPorProducto(oferta_id);
+
+            string resultao;
+
+            if (result == true)
+            {
+                resultao = "OK";
+            }
+            else {
+                resultao = "OK";
+            }
+            
+
+           // var ofertas = new { producto.NOMBRE_PRODUCTO, producto.Ofertas.FirstOrDefault().PRECIO, producto.Ofertas.FirstOrDefault().PRECIO_OFERTA, producto.Ofertas.FirstOrDefault().PCT_DESCUENTO, producto.Ofertas.FirstOrDefault().STOCK, producto.Ofertas.FirstOrDefault().Tienda.ID_TIENDA, producto.ID_PRODUCTO, producto.Ofertas.FirstOrDefault().DETALLE, producto.Ofertas.FirstOrDefault().ID_OFERTA, producto.Ofertas.FirstOrDefault().Imagen.ID_IMAGEN };
+            return this.Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
         /*GUARDA USUARIO*/
         [HttpPost]
         [AllowCrossSiteJson]
@@ -65,68 +105,166 @@ namespace MisOfertasApp.Controllers
 
         }
 
+
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult GuardarValoracionProducto(long codigo_venta, long valoracion , long producto_id)
+        {
+            var usuarioSesion = Session["USUARIO_SESION"] as UsuarioSesionBO;
+
+            ValoracionDao valoracion_dao = new ValoracionDao();
+            valoracion_dao.registraValoracion(codigo_venta, valoracion , usuarioSesion.id, producto_id);
+            valoracion_dao.Close();
+
+            long someMessage;
+
+
+            if (codigo_venta > 0)
+            {
+                someMessage = codigo_venta;
+            }
+            else
+            {
+                someMessage = 0;
+            }
+
+            TempData["message"] = someMessage;
+
+           return RedirectToAction("OfertaProductoDetalle","Home" , new { id_producto = producto_id , id_venta = codigo_venta });
+            
+            /*
+           var data = new { Url = Url.Action("OfertaProductoDetalle", "Home", new { id_producto = producto_id, id_venta = codigo_venta })};
+           return this.Json(data, JsonRequestBehavior.AllowGet);
+           */
+
+        }
+
+
+        public ActionResult OfertaProductoDetalle(long id_producto, long? id_venta)
+        {
+
+            /*var OfertaDao = new OfertaDao();
+            var oferta = OfertaDao.GetReference<IOferta>(id);
+            return View(oferta);*/
+            ViewBag.valor_producto = id_producto;
+
+
+
+
+            ViewBag.IdVenta = id_venta;
+            ViewBag.Message = TempData["message"];
+
+            var ProductoDao = new ProductoDao();
+            var producto = ProductoDao.GetReference<IProducto>(id_producto);
+
+
+            //NHibernateUtil.Initialize(producto.Ofertas);
+            //producto.CODIGO_VENTA_WEB = Convert.ToInt64(TempData["message"]);
+
+
+            return View("OfertaProductoDetalle", producto);
+
+
+            //var OfertaDao = new OfertaDao();
+            //var ofertas = OfertaDao.getOfertaPorProducto(id);
+            //return View(ofertas);
+
+        }
+
+
         [HttpPost]
         [AllowCrossSiteJson]
         public JsonResult ValorarProducto(long codigo_venta)
         {
 
+            var usuarioSesion = Session["USUARIO_SESION"] as UsuarioSesionBO;
 
-            using (var webClient = new WebClient())
+
+            ValoracionDao valoracion_dao = new ValoracionDao();
+            bool existeValoracion = valoracion_dao.getValoracionPorUsuario(codigo_venta, usuarioSesion.id);
+
+            var data = "";
+
+            //CONSULTAMOS EN BASE DE DATOS SI EXISTE VALORACION PARA LA VENTA DEL PRODUCTO CON USUARIO
+            if (existeValoracion == true)
             {
-                //OBTENER EL STRINF DE DATOS
-                String datosJSON = webClient.DownloadString("http://localhost:82/");
 
-                var data = "";
-
-                GetWsVentasCollection lista_ventas = JsonConvert.DeserializeObject<GetWsVentasCollection>(datosJSON);
-
-
-                if (lista_ventas.ListaVentasCollection.Where(x => x.VENTAS_WS_ID.Equals(codigo_venta)).Count() > 0)
-                {
-                    data = "OK";
-                }
-                else
-                {
-                    data = "NO";
-                }
-
-                //lista_ventas.ListaVentasCollection.Where(x => x.VENTAS_WS_ID.Equals(codigo_venta)).FirstOrDefault();
-
-
-                //foreach (var item in lista_ventas.ListaVentasCollection)
-                //{
-                //    if (item.VENTAS_WS_ID == codigo_venta)
-                //    {
-
-                //        data = "OK";
-                //        break;
-                //    }
-                //    else {
-
-                //        data = "NO";
-                //    }
-
-                //}
-
+                data = "VALORACION_REALIZADA";
+        
                 return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+            //SI NO EXISTE VALORACION CON LA VENTA Y USUARIO CONSULTAMOS EL SERVICIO
+
+                using (var webClient = new WebClient())
+                {
+                    //OBTENER EL STRING DE DATOS
+                    String datosJSON = webClient.DownloadString("http://localhost:82/");
+
+                    
+
+                    GetWsVentasCollection lista_ventas = JsonConvert.DeserializeObject<GetWsVentasCollection>(datosJSON);
+
+
+                    if (lista_ventas.ListaVentasCollection.Where(x => x.VENTAS_WS_ID.Equals(codigo_venta)).Count() > 0)
+                    {
+                        data = "OK";
+                    }
+                    else
+                    {
+                        data = "NO";
+                    }
+
+                    //lista_ventas.ListaVentasCollection.Where(x => x.VENTAS_WS_ID.Equals(codigo_venta)).FirstOrDefault();
+
+
+                    //foreach (var item in lista_ventas.ListaVentasCollection)
+                    //{
+                    //    if (item.VENTAS_WS_ID == codigo_venta)
+                    //    {
+
+                    //        data = "OK";
+                    //        break;
+                    //    }
+                    //    else {
+
+                    //        data = "NO";
+                    //    }
+
+                    //}
+
+                    return Json(data, JsonRequestBehavior.AllowGet);
+                }
+
             }
 
         }
 
-        public ActionResult GenerarCuponPDF()
+
+
+
+        public ActionResult GenerarCuponPDF(string producto_id, string nombre, string codigo_venta)
         {
 
-            ViewBag.Titulo = "HOLA";
+            ViewBag.NombreUsuario = nombre;
+            ViewBag.CodigoVenta = codigo_venta;
 
+            /*location.href = data.Url;*/
+
+            //var data = new { Status = true, Url = Url.Action("InprimirCuponDescuento", "Home", new { id = id, nombre = nombre, codigo_venta = codigo_venta  })};
+            //return this.Json(data, JsonRequestBehavior.AllowGet);
+
+            //return RedirectToAction("InprimirCuponDescuento", "Home", new { id = id, nombre = nombre, codigo_venta = codigo_venta , esVista= 1 });
             return View();
 
         }
 
-        public ActionResult InprimirCuponDescuento() {
+        public ActionResult InprimirCuponDescuento(string producto_id, string codigo_venta) {
 
-
-            var q = new ActionAsPdf("GenerarCuponPDF");
-
+            var usuarioSesion = Session["USUARIO_SESION"] as UsuarioSesionBO;
+            var q = new ActionAsPdf("GenerarCuponPDF", new { id = producto_id, nombre = usuarioSesion.nombre , codigo_venta = codigo_venta });
             return q;
         }
 
@@ -287,6 +425,8 @@ namespace MisOfertasApp.Controllers
         }
 
 
+
+
         public ActionResult ListadoProductosOfertas()
         {
             var OfertaDao = new OfertaDao();
@@ -301,24 +441,6 @@ namespace MisOfertasApp.Controllers
             }
         }
 
-        public ActionResult OfertaProductoDetalle(long id)
-        {
-
-            /*var OfertaDao = new OfertaDao();
-            var oferta = OfertaDao.GetReference<IOferta>(id);
-            return View(oferta);*/
-
-
-            var ProductoDao = new ProductoDao();
-            var producto = ProductoDao.GetReference<IProducto>(id);
-           // NHibernateUtil.Initialize(producto.Ofertas);
-            return View(producto);
-
-            //var OfertaDao = new OfertaDao();
-            //var ofertas = OfertaDao.getOfertaPorProducto(id);
-            //return View(ofertas);
-
-        }
 
 
 
